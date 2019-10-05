@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#schBtn").click(function(){
+                var filename =""
+                var filepath = document.getElementById("file").value;
+                if (filepath) {
+                    var startIndex = (filepath.indexOf('\\') >= 0 ? filepath.lastIndexOf('\\') : filepath.lastIndexOf('/'));
+                    filename = filepath.substring(startIndex);
+                    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                        filename = filename.substring(1);
+                    }
+                }
+<!--                alert("The paragraph was clicked."+filename);-->
+                if (filename != undefined && filename != null) {
+                    window.location = '/schedule/process?imagePath=' + filename;
+                }
+            });
+        });
+
+
+    </script>
+    <title>SmartScheduleSystem</title>
+</head>
+
+<body>
+<h2>Smart Schedule System</h2>
+<form action="insert.php" method="POST">
+    <fieldset>
+        <legend>PERSONAL INFO</legend>
+        <table Style="width:100%">
+            <tr>
+                <td><label>Name</label></td>
+                <td><input type="text" name="name" class="form-control" placeholder="Name" value=""/></td>
+            </tr>
+            <tr>
+                <td><label>NIC Number</label></td>
+                <td><input type="text" name=nic" class="form-control" placeholder="NIC" value=""/></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="gender" value="m">Male
+                    <input type=radio name="gender" value="f">Female
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="mail" class="form-control" placeholder="Email" name="email"></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td><select name="phone_code" value="">
+                    <option selected hidden>Select Code</option>
+                    <option value="077">077</option>
+                    <option value="076">076</option>
+                    <option value="071">071</option>
+                    <option value="072">072</option>
+                    <option value="075">075</option>
+                </select>
+                    <input type="phone" placeholder="98480*****" name="phone"></td>
+            </tr>
+        </table>
+        <!--        <p><input type="submit" class="btn btn-primary" action="insert.php" value="Submit" name="submit"></p>-->
+
+
+        <p><input type="file" class="btn btn-success" accept="image/*" name="image" id="file"
+                  onchange="loadFile(event)"></p>
+        <p><img id="output" width="200"/></p>
+        <script>
+                        var loadFile = function(event) {
+                        var image = document.getElementById("output");
+                        image.src = URL.createObjectURL(event.target.files[0]);
+                        };
+
+
+
+        </script>
+
+    </fieldset>
+</form>
+<p>
+    <button type="button" class="btn btn-success" id="schBtn" name="schedule">Schedule</button>
+</p>
+
+</body>
+</html>
