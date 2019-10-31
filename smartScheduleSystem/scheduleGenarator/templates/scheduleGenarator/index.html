@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        body {
+            background-color: LightGray;
+             }
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+}
+    </style>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -9,6 +26,15 @@
         $(document).ready(function(){
             $("#schBtn").click(function(){
                 var filename =""
+
+                var name = document.getElementById("name").value;
+                var genderM = document.getElementById("genderM").value;
+                var genderF = document.getElementById("genderF").value;
+                var height = document.getElementById("height").value;
+                var weight = document.getElementById("weight").value;
+                var bodyFat = document.getElementById("bodyFat").value;
+                var pressure = document.getElementById("pressure").value;
+
                 var filepath = document.getElementById("file").value;
                 if (filepath) {
                     var startIndex = (filepath.indexOf('\\') >= 0 ? filepath.lastIndexOf('\\') : filepath.lastIndexOf('/'));
@@ -19,7 +45,15 @@
                 }
 <!--                alert("The paragraph was clicked."+filename);-->
                 if (filename != undefined && filename != null) {
-                    window.location = '/schedule/process?imagePath=' + filename;
+                    window.location = '/schedule/process?imagePath=' + filename
+                    + '&name='+name
+                    + '&genderM='+genderM
+                    + '&genderF='+genderF
+                    + '&height='+height
+                    + '&weight='+weight
+                    + '&bodyFat='+bodyFat
+                    + '&pressure='+pressure
+                    ;
                 }
             });
         });
@@ -30,14 +64,14 @@
 </head>
 
 <body>
-<h2>Smart Schedule System</h2>
+<h1>SMART SCHEDULE SYSTEM</h1>
 <form action="insert.php" method="POST">
     <fieldset>
         <legend>PERSONAL INFO</legend>
         <table Style="width:100%">
             <tr>
                 <td><label>Name</label></td>
-                <td><input type="text" name="name" class="form-control" placeholder="Name" value=""/></td>
+                <td><input id="name" type="text" name="name" class="form-control" placeholder="Name" value=""/></td>
             </tr>
             <tr>
                 <td><label>NIC Number</label></td>
@@ -45,25 +79,42 @@
             </tr>
             <tr>
                 <td>Gender</td>
-                <td><input type="radio" name="gender" value="m">Male
-                    <input type=radio name="gender" value="f">Female
+                <td><input id="genderM" type="radio" name="gender" value="m">Male
+                    <input id="genderF" type=radio name="gender" value="f">Female
                 </td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="mail" class="form-control" placeholder="Email" name="email"></td>
+                <td><input type="mail" class="form-control" placeholder="Email" name="email" class="form-control"></td>
             </tr>
             <tr>
                 <td>Phone Number</td>
-                <td><select name="phone_code" value="">
+                <td><select name="phone_code" value="" class="form-control">
                     <option selected hidden>Select Code</option>
                     <option value="077">077</option>
                     <option value="076">076</option>
                     <option value="071">071</option>
                     <option value="072">072</option>
                     <option value="075">075</option>
-                </select>
-                    <input type="phone" placeholder="98480*****" name="phone"></td>
+                    </select>
+                    <input type="phone" placeholder="98480*****" name="phone" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td>Height</td>
+                <td><input id="height" type="text" name="height" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>Weight</td>
+                <td><input id="weight" type="text" name="weight" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>Body Fat Percentage</td>
+                <td><input id="bodyFat" type="text" name="bodyfp" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>Pressure Level</td>
+                <td><input id="pressure" type="text" name="pl" class="form-control"></td>
             </tr>
         </table>
         <!--        <p><input type="submit" class="btn btn-primary" action="insert.php" value="Submit" name="submit"></p>-->
@@ -87,6 +138,7 @@
 <p>
     <button type="button" class="btn btn-success" id="schBtn" name="schedule">Schedule</button>
 </p>
+<p><button type = submit name="save">Save</button></p>
 
 </body>
 </html>

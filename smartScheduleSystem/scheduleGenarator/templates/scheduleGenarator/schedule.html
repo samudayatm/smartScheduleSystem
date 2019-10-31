@@ -1,10 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Exercise Schedule</title>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 <body>
-    <h1>{{ status }}</h1>
+
+<h2>Exercise schedule for {{ name }}</h2>
+<h2>Body type : {{ bodyType }}</h2>
+
+{% if pressureCondition != 'HIGH' %}
+<table>
+  <tr>
+    <th>Exercise</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>Running</td>
+    <td>{{running}}</td>
+  </tr>
+  <tr>
+    <td>Pull Over</td>
+    <td>{{pullover}}</td>
+  </tr>
+  <tr>
+    <td>Front Press</td>
+    <td>{{front}}</td>
+  </tr>
+  <tr>
+    <td>Back Press</td>
+    <td>{{back}}</td>
+  </tr>
+  <tr>
+    <td>Bench Press</td>
+    <td>{{bench}}</td>
+  </tr>
+  <tr>
+    <td>Curl</td>
+    <td>{{curl}}</td>
+  </tr>
+  <tr>
+    <td>Triceps</td>
+    <td>{{triceps}}</td>
+  </tr>
+    <tr>
+    <td>Sit Ups</td>
+    <td>{{situps}}</td>
+  </tr>
+</table>
+{%else%}
+<h1>High Pressure</h1>
+{%endif%}
 </body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>{{ status }}</h1>-->
+<!--<h1>Exercise Schedule</h1>-->
+<!--<p></p>-->
+<!--<p>Running {{ running }}</p>-->
+<!--<p>Pull Over {{ pullover }}</p>-->
+<!--<p>Front Press {{ front }}</p>-->
+<!--<p>Back Press</p>-->
+<!--<p>Bench Press</p>-->
+<!--<p>Curl</p>-->
+<!--<p>Triceps</p>-->
+<!--<p>Sit Ups</p>-->
+<!--<p></p>-->
+<!--<p></p>-->
+<!--</body>-->
+<!--</html>-->
