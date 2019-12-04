@@ -4,10 +4,12 @@ from django.template import loader
 import cv2
 import tensorflow as tf
 import os.path
+import mysql.connector
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
 CATEGORIES = ["Fat", "Thin"]
+
 
 
 def prepare(filepath):
@@ -28,7 +30,6 @@ def index(request):
         'cal': "calll",
     }
     return HttpResponse(template.render(context, request))
-
 
 def process(request):
     model = tf.keras.models.load_model(os.path.join(BASE, "body-CNN.model"))

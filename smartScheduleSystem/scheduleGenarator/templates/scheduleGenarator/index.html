@@ -23,13 +23,18 @@ p {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+
+
         $(document).ready(function(){
             $("#schBtn").click(function(){
                 var filename =""
 
                 var name = document.getElementById("name").value;
+                var nic = document.getElementById("nic").value;
                 var genderM = document.getElementById("genderM").value;
                 var genderF = document.getElementById("genderF").value;
+                var email = document.getElementById("email").value;
+                var phoneNum = document.getElementById("phoneNum").value;
                 var height = document.getElementById("height").value;
                 var weight = document.getElementById("weight").value;
                 var bodyFat = document.getElementById("bodyFat").value;
@@ -43,7 +48,7 @@ p {
                         filename = filename.substring(1);
                     }
                 }
-<!--                alert("The paragraph was clicked."+filename);-->
+
                 if (filename != undefined && filename != null) {
                     window.location = '/schedule/process?imagePath=' + filename
                     + '&name='+name
@@ -56,6 +61,51 @@ p {
                     ;
                 }
             });
+             $("#saveBtn").click(function(){
+
+                var name = document.getElementById("name").value;
+                var nic = document.getElementById("nic").value;
+                var genderM = document.getElementById("genderM").value;
+                var genderF = document.getElementById("genderF").value;
+                var email = document.getElementById("email").value;
+                var phoneNum = document.getElementById("phoneNum").value;
+                var height = document.getElementById("height").value;
+                var weight = document.getElementById("weight").value;
+                var bodyFat = document.getElementById("bodyFat").value;
+                var pressure = document.getElementById("pressure").value;
+
+                if (document.getElementById('genderM').checked) {
+                     gender = 'm'
+                }else{
+                     gender = 'f'
+                }
+
+                  var filepath = document.getElementById("file").value;
+                if (filepath) {
+                    var startIndex = (filepath.indexOf('\\') >= 0 ? filepath.lastIndexOf('\\') : filepath.lastIndexOf('/'));
+                    filename = filepath.substring(startIndex);
+                    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                        filename = filename.substring(1);
+                    }
+                }
+
+                if (filename != undefined && filename != null && nic != undefined && nic != null) {
+                    alert("Saved");
+                    window.location = '/save/?imagePath=' + filename
+                    + '&name='+name
+                    + '&nic='+nic
+                    + '&gender='+gender
+                    + '&height='+height
+                    + '&weight='+weight
+                    + '&bodyFat='+bodyFat
+                    + '&pressure='+pressure
+                    + '&phoneNum='+phoneNum
+                    + '&email='+email
+                    ;
+                }else{
+                    alert("Please enter valid data");
+                }
+         });
         });
 
 
@@ -75,29 +125,24 @@ p {
             </tr>
             <tr>
                 <td><label>NIC Number</label></td>
-                <td><input type="text" name=nic" class="form-control" placeholder="NIC" value=""/></td>
+                <td><input id="nic" type="text" name=nic" class="form-control" placeholder="NIC" value=""/></td>
             </tr>
             <tr>
                 <td>Gender</td>
-                <td><input id="genderM" type="radio" name="gender" value="m">Male
+                <td><input id="genderM" type="radio" name="gender" value="m" checked="checked" >Male
                     <input id="genderF" type=radio name="gender" value="f">Female
                 </td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="mail" class="form-control" placeholder="Email" name="email" class="form-control"></td>
+                <td>
+                    <input id="email" type="mail" class="form-control" placeholder="Email" name="email" class="form-control">
+                </td>
             </tr>
             <tr>
                 <td>Phone Number</td>
-                <td><select name="phone_code" value="" class="form-control">
-                    <option selected hidden>Select Code</option>
-                    <option value="077">077</option>
-                    <option value="076">076</option>
-                    <option value="071">071</option>
-                    <option value="072">072</option>
-                    <option value="075">075</option>
-                    </select>
-                    <input type="phone" placeholder="98480*****" name="phone" class="form-control">
+                <td>
+                <input id="phoneNum" type="phone" placeholder="+94*****" name="phone" class="form-control">
                 </td>
             </tr>
             <tr>
@@ -138,7 +183,7 @@ p {
 <p>
     <button type="button" class="btn btn-success" id="schBtn" name="schedule">Schedule</button>
 </p>
-<p><button type = submit name="save">Save</button></p>
+<p><button type="button" class="btn btn-success" id="saveBtn" name="save">Save</button></p>
 
 </body>
 </html>
